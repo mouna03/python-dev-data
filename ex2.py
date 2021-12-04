@@ -22,14 +22,9 @@ Cette fonction va inserer le nombre aléatoire dans l'indice retourné par la fo
 '''
 def insertion(longueur,min,max):
     sorted_random_list= np.sort(np.random.choice(np.arange(min,max+1),longueur))
-    #print("tab: ",sorted_random_list)
     random_val= random.randint(min,max)
     indice= DPMR(random_val,0,longueur-1,sorted_random_list)
     sorted_random_list=np.insert(sorted_random_list,indice,random_val)
 
     return sorted_random_list
 
-
-"""tab=[5,8,11,24,26,29,40,42]   
-print(DPMR(25,0,7,tab))"""
-print(insertion(7,1,50))
