@@ -10,9 +10,13 @@ class Exercice3:
 
     def __init__(self):
         
-
+  
         self.code_dispo=pd.read_csv("data/codes disponibles.csv")
         self.tous_code=pd.read_csv("data/tous les codes.csv")
+
+        """
+        Le pourcentage des codes disponibles par rapport à tous les codes.
+        """   
 
     def pourcentage(self):
         sum_code_dispo=np.sum(self.code_dispo.values.tolist())
@@ -22,10 +26,10 @@ class Exercice3:
 
     def frequence(self,code):
         """
-        calcul occurrence du code
+        la fréquence d’un code disponible donné.
         """
-        occ_code=self.code_dispo[self.code_dispo["codes"]==int(code) ].count()[0]
-        total_code=self.code_dispo.shape[0]
+        occ_code=self.tous_code[self.tous_code["codes"]==code ].count()[0]
+        total_code=self.tous_code.count()[0]
         return occ_code/total_code
 
 
@@ -41,11 +45,26 @@ class Exercice3:
         Afficher les code disponibles et leurs fréquence
         """
         fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.bar(list_code_dispo,result, log=True)
+        ax = fig.add_subplot()
+        ax.bar([str(x) for x in list_code_dispo],result, log=True)
         plt.show()
+
+    def graph(self, list_code_dispo):
+        result=[]
+        for code in list_code_dispo:
+            result.append(self.frequence(code))
+        result = pd.DataFrame(result)
+        return result.describe()
+
+
+
+      
+        
+
+        return frequence_moyenne
 
 obj = Exercice3()
 print(obj.pourcentage())
-print(obj.frequence("841460"))
-print(obj.graph_frequence(["841460", "640520"]))
+print(obj.frequence(841460))
+#print(obj.graph_frequence([841460, 640520, 960390, 732690, 392690]))
+print(obj.graph([841460, 640520, 960390]))
