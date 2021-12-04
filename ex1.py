@@ -1,6 +1,7 @@
 import random
 import numpy as np
 
+
 def generer(num,min,max):
     """
     num: (int) nombre de numéros pour le billet de loterie
@@ -10,4 +11,3 @@ def generer(num,min,max):
     """
     return np.sort(np.random.choice(np.arange(min,max+1),num,replace=False))
 
-#print(generer(6,1,49))
